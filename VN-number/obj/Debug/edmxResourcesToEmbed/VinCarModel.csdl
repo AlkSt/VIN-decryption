@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VinCarDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="bodyTable">
+    <Key>
+      <PropertyRef Name="id_body" />
+    </Key>
+    <Property Name="id_body" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="7" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="id_firm" Type="Int32" Nullable="false" />
+    <Property Name="decrypte" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="firmTable" Relationship="Self.FK_bodyTable_firmTable" FromRole="bodyTable" ToRole="firmTable" />
+  </EntityType>
+  <EntityType Name="engineTable">
+    <Key>
+      <PropertyRef Name="id_engine" />
+    </Key>
+    <Property Name="id_engine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="model" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="decrypte" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="firmTable">
+    <Key>
+      <PropertyRef Name="id_firm" />
+    </Key>
+    <Property Name="id_firm" Type="Int32" Nullable="false" />
+    <Property Name="firm_name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="code_pizition" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="bodyTable" Relationship="Self.FK_bodyTable_firmTable" FromRole="firmTable" ToRole="bodyTable" />
+    <NavigationProperty Name="modelTable" Relationship="Self.FK_modelTable_firmTable" FromRole="firmTable" ToRole="modelTable" />
+    <NavigationProperty Name="producterTable" Relationship="Self.FK_producterTable_firmTable" FromRole="firmTable" ToRole="producterTable" />
+    <NavigationProperty Name="WMITable" Relationship="Self.FK_WMITable_firmTable" FromRole="firmTable" ToRole="WMITable" />
+  </EntityType>
+  <EntityType Name="modelTable">
+    <Key>
+      <PropertyRef Name="id_model" />
+    </Key>
+    <Property Name="id_model" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="7" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="id_firm" Type="Int32" Nullable="false" />
+    <Property Name="decrypte" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="firmTable" Relationship="Self.FK_modelTable_firmTable" FromRole="modelTable" ToRole="firmTable" />
+  </EntityType>
+  <EntityType Name="producterTable">
+    <Key>
+      <PropertyRef Name="id_prod" />
+    </Key>
+    <Property Name="id_prod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="id_firm" Type="Int32" Nullable="false" />
+    <Property Name="decrypte" Type="String" MaxLength="60" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="firmTable" Relationship="Self.FK_producterTable_firmTable" FromRole="producterTable" ToRole="firmTable" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="WMITable">
+    <Key>
+      <PropertyRef Name="id_wmi" />
+    </Key>
+    <Property Name="wmi" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="id_firm" Type="Int32" Nullable="false" />
+    <Property Name="id_wmi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="firmTable" Relationship="Self.FK_WMITable_firmTable" FromRole="WMITable" ToRole="firmTable" />
+  </EntityType>
+  <Association Name="FK_bodyTable_firmTable">
+    <End Role="firmTable" Type="Self.firmTable" Multiplicity="1" />
+    <End Role="bodyTable" Type="Self.bodyTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="firmTable">
+        <PropertyRef Name="id_firm" />
+      </Principal>
+      <Dependent Role="bodyTable">
+        <PropertyRef Name="id_firm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_modelTable_firmTable">
+    <End Role="firmTable" Type="Self.firmTable" Multiplicity="1" />
+    <End Role="modelTable" Type="Self.modelTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="firmTable">
+        <PropertyRef Name="id_firm" />
+      </Principal>
+      <Dependent Role="modelTable">
+        <PropertyRef Name="id_firm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_producterTable_firmTable">
+    <End Role="firmTable" Type="Self.firmTable" Multiplicity="1" />
+    <End Role="producterTable" Type="Self.producterTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="firmTable">
+        <PropertyRef Name="id_firm" />
+      </Principal>
+      <Dependent Role="producterTable">
+        <PropertyRef Name="id_firm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WMITable_firmTable">
+    <End Role="firmTable" Type="Self.firmTable" Multiplicity="1" />
+    <End Role="WMITable" Type="Self.WMITable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="firmTable">
+        <PropertyRef Name="id_firm" />
+      </Principal>
+      <Dependent Role="WMITable">
+        <PropertyRef Name="id_firm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VinCarDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bodyTable" EntityType="Self.bodyTable" />
+    <EntitySet Name="engineTable" EntityType="Self.engineTable" />
+    <EntitySet Name="firmTable" EntityType="Self.firmTable" />
+    <EntitySet Name="modelTable" EntityType="Self.modelTable" />
+    <EntitySet Name="producterTable" EntityType="Self.producterTable" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="WMITable" EntityType="Self.WMITable" />
+    <AssociationSet Name="FK_bodyTable_firmTable" Association="Self.FK_bodyTable_firmTable">
+      <End Role="firmTable" EntitySet="firmTable" />
+      <End Role="bodyTable" EntitySet="bodyTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_modelTable_firmTable" Association="Self.FK_modelTable_firmTable">
+      <End Role="firmTable" EntitySet="firmTable" />
+      <End Role="modelTable" EntitySet="modelTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_producterTable_firmTable" Association="Self.FK_producterTable_firmTable">
+      <End Role="firmTable" EntitySet="firmTable" />
+      <End Role="producterTable" EntitySet="producterTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WMITable_firmTable" Association="Self.FK_WMITable_firmTable">
+      <End Role="firmTable" EntitySet="firmTable" />
+      <End Role="WMITable" EntitySet="WMITable" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

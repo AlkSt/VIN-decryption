@@ -18,13 +18,14 @@ namespace VN_number
                 car.firmId = idFirm;
             else { car.UncnownCar(); return car; }
             //ищем в каком порядке и какой длинны коды
+            // так же извлечем марку авто
             Dictionary<int, Point> pozLenCode = null;
-            string pozitionString = getPozitionString(car.firmId);
+            string pozitionString= null;
+            (car.firmName, pozitionString) = getFirmParams(car.firmId);
+            // проврка есть ли данные для дальнейшей расшифровки
             if (pozitionString == null)
                 return car;
             else pozLenCode = extractPozition(pozitionString);
-           // ищем марку (название фирмы) автомобиля
-            car.firmName = getFirmName(car.firmId);
             // ищем модель 
             car.Model = getModel(vin, car.firmId,pozLenCode[0]);
             //знаяодель можем найти двигатель
@@ -35,10 +36,15 @@ namespace VN_number
             car.Producter = getProducter(vin,car.firmId);
             int pozYear = 9;
             car.Year = extractYearFtomVIN(vin[pozYear]);
-            
             return car;
         }
 
+        /// <summary>
+        /// расчет правильности вин кода
+        /// по соответствию с контрольной суммой
+        /// </summary>
+        /// <param name="vin">вин-код</param>
+        /// <returns></returns>
         public bool CorrectCHK(string vin)
         {
             int controlSum = 0, vinSum;
@@ -64,6 +70,12 @@ namespace VN_number
             return (controlSum - (controlSum / 11) * 11) == vinSum;
         }
 
+        /// <summary>
+        /// В соответствии с алфавитом для ассоциирования кода и года
+        /// рассчитывает модельный год автомобиля
+        /// </summary>
+        /// <param name="yearCode">символ из vin кода</param>
+        /// <returns></returns>
         int extractYearFtomVIN(char yearCode)
         {
             List<char> alphabet = new List<char> { '1', '2' ,'3', '4', '5', '6', '7', '8', '9','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j',
@@ -88,27 +100,29 @@ namespace VN_number
             }
             return id;
         }
-
-        string getFirmName(int idFirm)
+        
+        (string, string) getFirmParams(int idFirm)
         {
             string name=null;
+            string pozString = null;
             using (VinCarDBEntities database = new VinCarDBEntities())
             {
                 var firms = database.firmTable.Where(i => i.id_firm.Equals(idFirm)).ToList(); ;
                 if (firms.Count != 0)
+                {
                     name = firms.FirstOrDefault().firm_name;
-            }
-            return name;
+                    pozString = firms.FirstOrDefault().code_pizition;
+                }
+                }
+            return (name, pozString);
         }
 
         string getModel(string vin, int idFirm, Point pozLen)
         {
-            vin = vin.ToUpper();
-            string code = vin.Substring(pozLen.X, pozLen.Y);
+            string code = vin.Substring(pozLen.X, pozLen.Y).ToUpper();
             string model = null;
             using (VinCarDBEntities database = new VinCarDBEntities())
             {
-                //если производмтель колируется одним символом
                 var prod = database.modelTable.Where(i => i.id_firm == idFirm && i.code.Replace(" ", "") == code).ToList();
                 if (prod.Count!=0)
                     model = prod.FirstOrDefault().decrypte;
@@ -118,8 +132,7 @@ namespace VN_number
 
         string getBody(string vin, int idFirm, Point pozLen)
         {
-            vin = vin.ToUpper();
-            string code = vin.Substring(pozLen.X, pozLen.Y);
+            string code = vin.Substring(pozLen.X, pozLen.Y).ToUpper();
             string body = null;
             using (VinCarDBEntities database = new VinCarDBEntities())
             {
@@ -156,21 +169,16 @@ namespace VN_number
             }
             return engine;
         }
-        string getPozitionString(int idFirm)
-        {
-            string pozString = null;
-            using (VinCarDBEntities database = new VinCarDBEntities())
-            {
-                var finds = database.firmTable.Where(i => i.id_firm == idFirm);
-                if (finds.Count() == 1)
-                    pozString = finds.FirstOrDefault().code_pizition;
-            }
-            return pozString;
-        }
+       
+        /// <summary>
+        /// Извлекает из получанной строки положение кодов 
+        /// параметров в вин-еоде а так же длинну кода
+        /// </summary>
+        /// <param name="box">строка в которой находятся данные о длинне и позиции кодов параметров</param>
+        /// <returns></returns>
         Dictionary<int,Point> extractPozition(string box)
         {
-            box = box.Replace(" ", "");
-            string[] poz = box.Split(',');
+            string[] poz = box.Replace(" ", "").Split(',');
             var rezult = new Dictionary<int, Point>();
             int i = 0;
             foreach (var item in poz)

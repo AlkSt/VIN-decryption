@@ -30,14 +30,14 @@ namespace VN_number
             else
             {
                     wrongLabel.Text = "Производится рассчет.";
-                //if (control.Correct(vin)) { wrongLabel.Text = " Введен коррекный VIN-код";
-                //}
-                //else wrongLabel.Text = "(CHK не совпадает)";
                     ViewInfomation(control.getAllInformation(vin));
                 }
             }
         }
-
+        /// <summary>
+        /// Выводит на форму результат расщифровки
+        /// </summary>
+        /// <param name="car">объект машины</param>
         private void ViewInfomation(Car car)
         {
             carYearLabel.Text = car.Year.ToString()=="0"?"--": car.Year.ToString();
@@ -55,9 +55,5 @@ namespace VN_number
                 decodeButton_Click(sender, null);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

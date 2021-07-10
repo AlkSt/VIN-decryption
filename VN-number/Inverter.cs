@@ -15,25 +15,25 @@ namespace VN_number
             //найдем есть ли такая машина если нет выводим неизвестно и заканчиваем
             int idFirm = GetFirmId(vin.Substring(0, 3));
             if (idFirm != 0)
-                car.firmId = idFirm;
+                car.FirmId = idFirm;
             else { car.UncnownCar(); return car; }
             //ищем в каком порядке и какой длинны коды
             // так же извлечем марку авто
             Dictionary<int, Point> pozLenCode = null;
             string pozitionString= null;
-            (car.firmName, pozitionString) = GetFirmParams(car.firmId);
+            (car.FirmName, pozitionString) = GetFirmParams(car.FirmId);
             // проврка есть ли данные для дальнейшей расшифровки
             if (pozitionString == null)
                 return car;
             else pozLenCode = ExtractPozition(pozitionString);
             // ищем модель 
-            car.Model = GetModel(vin, car.firmId,pozLenCode[0]);
+            car.Model = GetModel(vin, car.FirmId,pozLenCode[0]);
             //знаяодель можем найти двигатель
             car.Engine = GetEngine(vin, car.Model, pozLenCode[2]);
             //ищем особенности кузова
-            car.Body = GetBody(vin, car.firmId, pozLenCode[1]);
+            car.Body = GetBody(vin, car.FirmId, pozLenCode[1]);
             //ище производителя машины
-            car.Producter = GetProducter(vin,car.firmId);
+            car.Producter = GetProducter(vin,car.FirmId);
             int pozYear = 9;
             car.Year = ExtractYearFtomVIN(vin[pozYear]);
             return car;

@@ -26,12 +26,12 @@ namespace VN_number
              engine = "--";
         }
 
-        public int firmId
+        public int FirmId
         {
             get { return id_firm; }
             set { id_firm = value; }
         }
-        public string firmName
+        public string FirmName
         {
             get { return firm_name; }
             set { standartSet(value, ref firm_name); }

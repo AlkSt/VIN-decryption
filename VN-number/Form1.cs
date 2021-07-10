@@ -32,7 +32,15 @@ namespace VN_number
                 else
                 {
                     statusLabel.Text = "Производится рассчет.";
-                    ViewInfomation(model.DecodeVIN(vin));
+                    try
+                    {
+
+                        ViewInfomation(model.DecodeVIN(vin));
+                    }
+                    catch (Exception)
+                    {
+                        statusLabel.Text = "Произошла ошибка получения данных.";
+                    }
                 }
             }
         }
@@ -43,7 +51,7 @@ namespace VN_number
         private void ViewInfomation(Car car)
         {
             carYearTextBox.Text = car.Year.ToString()=="0"?"--": car.Year.ToString();
-            carFirmTextBox.Text = car.firmName.ToString();
+            carFirmTextBox.Text = car.FirmName.ToString();
             carModelTextBox.Text = car.Model.ToString();
             carProducterLabel.Text = car.Producter.ToString();
             carBodyLabel.Text = car.Body.ToString();

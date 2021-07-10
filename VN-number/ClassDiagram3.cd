@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VN_number.Car">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAQAABAAAAAIAAAABCAAAAQAAAAAKRAgAAAQIAAE=</HashCode>
+      <FileName>Car.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VN_number.Controller">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAIAAA=</HashCode>
+      <FileName>Controller.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="model" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VN_number.Form1">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gAgAAEAABSAoBAAIABCgIQgCAAAAAIAAEAIAAAAAghA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="control" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VN_number.Inverter">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAoACAAAQAAAAAAAQAAAAAAABAAQAAAAAAoAAAAA=</HashCode>
+      <FileName>Inverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VN_number.Program" Collapsed="true">
+    <Position X="8.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VN_number.VinCarDBEntities">
+    <Position X="3" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAQAAAAACBQAAAAAEAAAAAAAAAABEAAAAAA=</HashCode>
+      <FileName>VinCarModel.Context.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="bodyTable" />
+      <Property Name="engineTable" />
+      <Property Name="firmTable" />
+      <Property Name="modelTable" />
+      <Property Name="producterTable" />
+      <Property Name="WMITable" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="VN_number.bodyTable" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAIACAAAAAAAIAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>bodyTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VN_number.engineTable" Collapsed="true">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAACAAAIAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>engineTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VN_number.firmTable" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAAAQAAAIACBAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>firmTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VN_number.modelTable" Collapsed="true">
+    <Position X="2" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAIAAAAAAABAIAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>modelTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VN_number.producterTable" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAIAIAAAAAAAAAIAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>producterTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VN_number.sysdiagrams" Collapsed="true">
+    <Position X="8.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAIAAAAAAAAAAAAAAAQAAAFAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>sysdiagrams.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VN_number.WMITable" Collapsed="true">
+    <Position X="2.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAIAAACAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>WMITable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VN_number.Properties.Resources" Collapsed="true">
+    <Position X="8.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VN_number.Properties.Settings" Collapsed="true">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAIAEAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

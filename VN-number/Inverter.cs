@@ -9,11 +9,11 @@ namespace VN_number
 {
     class Inverter
     { 
-        public Car decodeVIN( string vin)
+        public Car DecodeVIN( string vin)
         {
             Car car = new Car();
             //найдем есть ли такая машина если нет выводим неизвестно и заканчиваем
-            int idFirm = getFirmId(vin.Substring(0, 3));
+            int idFirm = GetFirmId(vin.Substring(0, 3));
             if (idFirm != 0)
                 car.firmId = idFirm;
             else { car.UncnownCar(); return car; }
@@ -21,21 +21,21 @@ namespace VN_number
             // так же извлечем марку авто
             Dictionary<int, Point> pozLenCode = null;
             string pozitionString= null;
-            (car.firmName, pozitionString) = getFirmParams(car.firmId);
+            (car.firmName, pozitionString) = GetFirmParams(car.firmId);
             // проврка есть ли данные для дальнейшей расшифровки
             if (pozitionString == null)
                 return car;
-            else pozLenCode = extractPozition(pozitionString);
+            else pozLenCode = ExtractPozition(pozitionString);
             // ищем модель 
-            car.Model = getModel(vin, car.firmId,pozLenCode[0]);
+            car.Model = GetModel(vin, car.firmId,pozLenCode[0]);
             //знаяодель можем найти двигатель
-            car.Engine = getEngine(vin, car.Model, pozLenCode[2]);
+            car.Engine = GetEngine(vin, car.Model, pozLenCode[2]);
             //ищем особенности кузова
-            car.Body = getBody(vin, car.firmId, pozLenCode[1]);
+            car.Body = GetBody(vin, car.firmId, pozLenCode[1]);
             //ище производителя машины
-            car.Producter = getProducter(vin,car.firmId);
+            car.Producter = GetProducter(vin,car.firmId);
             int pozYear = 9;
-            car.Year = extractYearFtomVIN(vin[pozYear]);
+            car.Year = ExtractYearFtomVIN(vin[pozYear]);
             return car;
         }
 
@@ -76,7 +76,7 @@ namespace VN_number
         /// </summary>
         /// <param name="yearCode">символ из vin кода</param>
         /// <returns></returns>
-        int extractYearFtomVIN(char yearCode)
+        int ExtractYearFtomVIN(char yearCode)
         {
             List<char> alphabet = new List<char> { '1', '2' ,'3', '4', '5', '6', '7', '8', '9','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j',
             'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'x', 'y'};
@@ -88,7 +88,7 @@ namespace VN_number
             return 2001 + index;
         }
 
-        int getFirmId(string WMI)
+        int GetFirmId(string WMI)
         {
             WMI = WMI.ToUpper();
             int id=0;
@@ -101,7 +101,7 @@ namespace VN_number
             return id;
         }
         
-        (string, string) getFirmParams(int idFirm)
+        (string, string) GetFirmParams(int idFirm)
         {
             string name=null;
             string pozString = null;
@@ -117,7 +117,7 @@ namespace VN_number
             return (name, pozString);
         }
 
-        string getModel(string vin, int idFirm, Point pozLen)
+        string GetModel(string vin, int idFirm, Point pozLen)
         {
             string code = vin.Substring(pozLen.X, pozLen.Y).ToUpper();
             string model = null;
@@ -130,7 +130,7 @@ namespace VN_number
             return model;
         }
 
-        string getBody(string vin, int idFirm, Point pozLen)
+        string GetBody(string vin, int idFirm, Point pozLen)
         {
             string code = vin.Substring(pozLen.X, pozLen.Y).ToUpper();
             string body = null;
@@ -143,7 +143,7 @@ namespace VN_number
             return body;
         }
 
-        string getProducter(string vin, int idFirm)
+        string GetProducter(string vin, int idFirm)
         {
             string code = vin[10].ToString().ToUpper();
             string producter = null;
@@ -156,7 +156,7 @@ namespace VN_number
             return producter;
         }
 
-        string getEngine(string vin, string modelname, Point pozLen)
+        string GetEngine(string vin, string modelname, Point pozLen)
         {
             modelname = modelname.ToUpper();
             string code = vin.Substring(pozLen.X, pozLen.Y).ToUpper();
@@ -176,7 +176,7 @@ namespace VN_number
         /// </summary>
         /// <param name="box">строка в которой находятся данные о длинне и позиции кодов параметров</param>
         /// <returns></returns>
-        Dictionary<int,Point> extractPozition(string box)
+        Dictionary<int,Point> ExtractPozition(string box)
         {
             string[] poz = box.Replace(" ", "").Split(',');
             var rezult = new Dictionary<int, Point>();

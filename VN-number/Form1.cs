@@ -13,24 +13,26 @@ namespace VN_number
 {
     public partial class Form1 : Form
     {
-        Controller control;
+        Inverter model;
         public Form1()
         {
-            control = new Controller();
+            model = new Inverter();
             InitializeComponent();
         }
 
         private void decodeButton_Click(object sender, EventArgs e)
         {
             string vin = VINMaskedTextBox.Text.ToLower();
-            if (vin.Length != 17) MessageBox.Show("VIN-код должен содержать 17 символов");
-            else { 
-            if (vin.Contains("i") || vin.Contains("o") || vin.Contains("q"))
-                wrongLabel.Text = "Не верно введен VIN-код (не должно присудствовать символов: I,O,Q)";
+            if (vin.Length != 17) 
+                statusLabel.Text = "VIN-код должен содержать 17 символов";
             else
             {
-                    wrongLabel.Text = "Производится рассчет.";
-                    ViewInfomation(control.getAllInformation(vin));
+                if (vin.Contains("i") || vin.Contains("o") || vin.Contains("q"))
+                    statusLabel.Text = "Не верно введен VIN-код (не должно присудствовать символов: I,O,Q)";
+                else
+                {
+                    statusLabel.Text = "Производится рассчет.";
+                    ViewInfomation(model.DecodeVIN(vin));
                 }
             }
         }
@@ -40,13 +42,13 @@ namespace VN_number
         /// <param name="car">объект машины</param>
         private void ViewInfomation(Car car)
         {
-            carYearLabel.Text = car.Year.ToString()=="0"?"--": car.Year.ToString();
-            carFirmLabel.Text = car.firmName.ToString();
-            carModelLable.Text = car.Model.ToString();
+            carYearTextBox.Text = car.Year.ToString()=="0"?"--": car.Year.ToString();
+            carFirmTextBox.Text = car.firmName.ToString();
+            carModelTextBox.Text = car.Model.ToString();
             carProducterLabel.Text = car.Producter.ToString();
             carBodyLabel.Text = car.Body.ToString();
             carEngineLabel.Text = car.Engine.ToString();
-            wrongLabel.Text = "";
+            statusLabel.Text = "";
         }
 
         private void VINMaskedTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -55,5 +57,9 @@ namespace VN_number
                 decodeButton_Click(sender, null);
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

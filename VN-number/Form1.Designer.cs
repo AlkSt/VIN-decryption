@@ -31,19 +31,19 @@
             this.VINlable = new System.Windows.Forms.Label();
             this.VINMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.decodeButton = new System.Windows.Forms.Button();
-            this.wrongLabel = new System.Windows.Forms.Label();
+            this.statusLabel = new System.Windows.Forms.Label();
             this.engienLabel = new System.Windows.Forms.Label();
             this.prodLabel = new System.Windows.Forms.Label();
             this.firmLabel = new System.Windows.Forms.Label();
             this.modelLabel = new System.Windows.Forms.Label();
             this.bodyLabel = new System.Windows.Forms.Label();
             this.yearLabel = new System.Windows.Forms.Label();
-            this.carYearLabel = new System.Windows.Forms.Label();
-            this.carFirmLabel = new System.Windows.Forms.Label();
             this.carBodyLabel = new System.Windows.Forms.Label();
-            this.carModelLable = new System.Windows.Forms.Label();
             this.carProducterLabel = new System.Windows.Forms.Label();
             this.carEngineLabel = new System.Windows.Forms.Label();
+            this.carFirmTextBox = new System.Windows.Forms.TextBox();
+            this.carModelTextBox = new System.Windows.Forms.TextBox();
+            this.carYearTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // VINlable
@@ -80,15 +80,15 @@
             this.decodeButton.UseVisualStyleBackColor = false;
             this.decodeButton.Click += new System.EventHandler(this.decodeButton_Click);
             // 
-            // wrongLabel
+            // statusLabel
             // 
-            this.wrongLabel.AutoSize = true;
-            this.wrongLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.wrongLabel.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.wrongLabel.Location = new System.Drawing.Point(19, 87);
-            this.wrongLabel.Name = "wrongLabel";
-            this.wrongLabel.Size = new System.Drawing.Size(0, 22);
-            this.wrongLabel.TabIndex = 3;
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.statusLabel.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.statusLabel.Location = new System.Drawing.Point(19, 87);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(0, 22);
+            this.statusLabel.TabIndex = 3;
             // 
             // engienLabel
             // 
@@ -156,30 +156,6 @@
             this.yearLabel.TabIndex = 10;
             this.yearLabel.Text = "Год выпуска";
             // 
-            // carYearLabel
-            // 
-            this.carYearLabel.AutoSize = true;
-            this.carYearLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
-                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.carYearLabel.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.carYearLabel.Location = new System.Drawing.Point(209, 217);
-            this.carYearLabel.Name = "carYearLabel";
-            this.carYearLabel.Size = new System.Drawing.Size(0, 25);
-            this.carYearLabel.TabIndex = 11;
-            this.carYearLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // carFirmLabel
-            // 
-            this.carFirmLabel.AutoSize = true;
-            this.carFirmLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
-                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.carFirmLabel.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.carFirmLabel.Location = new System.Drawing.Point(209, 133);
-            this.carFirmLabel.Name = "carFirmLabel";
-            this.carFirmLabel.Size = new System.Drawing.Size(0, 25);
-            this.carFirmLabel.TabIndex = 12;
-            this.carFirmLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
             // carBodyLabel
             // 
             this.carBodyLabel.AutoSize = true;
@@ -191,18 +167,6 @@
             this.carBodyLabel.Size = new System.Drawing.Size(0, 25);
             this.carBodyLabel.TabIndex = 13;
             this.carBodyLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // carModelLable
-            // 
-            this.carModelLable.AutoSize = true;
-            this.carModelLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
-                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.carModelLable.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.carModelLable.Location = new System.Drawing.Point(209, 172);
-            this.carModelLable.Name = "carModelLable";
-            this.carModelLable.Size = new System.Drawing.Size(0, 25);
-            this.carModelLable.TabIndex = 14;
-            this.carModelLable.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // carProducterLabel
             // 
@@ -228,6 +192,27 @@
             this.carEngineLabel.TabIndex = 16;
             this.carEngineLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
+            // carFirmTextBox
+            // 
+            this.carFirmTextBox.Location = new System.Drawing.Point(215, 132);
+            this.carFirmTextBox.Name = "carFirmTextBox";
+            this.carFirmTextBox.Size = new System.Drawing.Size(100, 26);
+            this.carFirmTextBox.TabIndex = 17;
+            // 
+            // carModelTextBox
+            // 
+            this.carModelTextBox.Location = new System.Drawing.Point(215, 172);
+            this.carModelTextBox.Name = "carModelTextBox";
+            this.carModelTextBox.Size = new System.Drawing.Size(100, 26);
+            this.carModelTextBox.TabIndex = 18;
+            // 
+            // carYearTextBox
+            // 
+            this.carYearTextBox.Location = new System.Drawing.Point(214, 216);
+            this.carYearTextBox.Name = "carYearTextBox";
+            this.carYearTextBox.Size = new System.Drawing.Size(100, 26);
+            this.carYearTextBox.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -236,24 +221,25 @@
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(629, 401);
+            this.Controls.Add(this.carYearTextBox);
+            this.Controls.Add(this.carModelTextBox);
+            this.Controls.Add(this.carFirmTextBox);
             this.Controls.Add(this.carEngineLabel);
             this.Controls.Add(this.carProducterLabel);
-            this.Controls.Add(this.carModelLable);
             this.Controls.Add(this.carBodyLabel);
-            this.Controls.Add(this.carFirmLabel);
-            this.Controls.Add(this.carYearLabel);
             this.Controls.Add(this.yearLabel);
             this.Controls.Add(this.prodLabel);
             this.Controls.Add(this.engienLabel);
             this.Controls.Add(this.bodyLabel);
             this.Controls.Add(this.modelLabel);
             this.Controls.Add(this.firmLabel);
-            this.Controls.Add(this.wrongLabel);
+            this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.decodeButton);
             this.Controls.Add(this.VINMaskedTextBox);
             this.Controls.Add(this.VINlable);
             this.Name = "Form1";
             this.Text = "VIN-расшифровщик";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,19 +250,19 @@
         private System.Windows.Forms.Label VINlable;
         private System.Windows.Forms.MaskedTextBox VINMaskedTextBox;
         private System.Windows.Forms.Button decodeButton;
-        private System.Windows.Forms.Label wrongLabel;
+        private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.Label engienLabel;
         private System.Windows.Forms.Label prodLabel;
         private System.Windows.Forms.Label firmLabel;
         private System.Windows.Forms.Label modelLabel;
         private System.Windows.Forms.Label bodyLabel;
         private System.Windows.Forms.Label yearLabel;
-        private System.Windows.Forms.Label carYearLabel;
-        private System.Windows.Forms.Label carFirmLabel;
         private System.Windows.Forms.Label carBodyLabel;
-        private System.Windows.Forms.Label carModelLable;
         private System.Windows.Forms.Label carProducterLabel;
         private System.Windows.Forms.Label carEngineLabel;
+        private System.Windows.Forms.TextBox carFirmTextBox;
+        private System.Windows.Forms.TextBox carModelTextBox;
+        private System.Windows.Forms.TextBox carYearTextBox;
     }
 }
 
